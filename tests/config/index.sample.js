@@ -1,4 +1,4 @@
-//To run the tests, rename this file to config.js
+//To run the tests, rename this file to index.js
 //and fill in your posterous account details
 
 module.exports = {
