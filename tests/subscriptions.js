@@ -16,12 +16,19 @@ module.exports['Subscribed Sites'] = function(test) {
 
       test.ok(result, 'Could not retrieve the user\'s subscriptions');
 
-      test.done();
+      console.log('Fetching page 2 of subscriptions...');
+      posterous.getSubscriptions(2, function(err, result) {
+        test.ok(!err, 'An error occurred: ' + err);
+
+        test.ok(result, 'Coudl not retrieve page 2 of subscriptions');
+
+        test.done();
+      });
     });
   });
 };
 
-module.exports['Subscribed Sites Page 2'] = function(test) {
+module.exports['Subscription Posts'] = function(test) {
   var posterous = new Posterous(config.user, config.pass);
 
   console.log('Fetching api token...');
@@ -30,13 +37,20 @@ module.exports['Subscribed Sites Page 2'] = function(test) {
       test.ok(!err, 'Could not get api token, check your username/password in config/index.js');
     }
 
-    console.log('Fetching page 2 of subscriptions...');
-    posterous.getSubscriptions(2, function(err, result) {
+    console.log('Fetching page 1 of subscription posts...');
+    posterous.getSubscriptionPosts(function(err, result) {
       test.ok(!err, 'An error occurred: ' + err);
 
-      test.ok(result, 'Could not retrieve page 2 of the user\'s subscriptions');
+      test.ok(result, 'Could not retrieve page 1 of subscription posts');
 
-      test.done();
+      console.log('Fetching page 2 of subscription posts...');
+      posterous.getSubscriptionPosts(2, function(err, result) {
+        test.ok(!err, 'An error occurred: ' + err);
+
+        test.ok(result, 'Could not retrieve page 2 of posts');
+
+        test.done();
+      });
     });
   });
 };
