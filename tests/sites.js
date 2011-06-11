@@ -38,6 +38,13 @@ module.exports['Listing Sites'] = function(test) {
 };
 
 module.exports['Create, update, retrieve and delete site'] = function(test) {
+  //This test is run in four stages:
+  //Create a new site
+  //Update the new site's name
+  //Fetch the new site's details
+  //Delete the new site
+  //
+  //This will test the API methods createSite, updateSite, getSite, and deleteSite
   var posterous = new Posterous(config.user, config.pass);
 
   console.log('Fetching api token...');
@@ -51,7 +58,7 @@ module.exports['Create, update, retrieve and delete site'] = function(test) {
     //Create new private site with random subdomain and name
     var options = {
       'site[hostname]': makeid(),
-      'site[name]': makeid(),
+      'site[name]': 'unit test stage 1',
       'site[is_private]': 'true'
     };
 
@@ -60,9 +67,35 @@ module.exports['Create, update, retrieve and delete site'] = function(test) {
 
       test.ok(result, 'Could not create a new site');
 
-      console.log(result);
+      test.equals(result.name, 'unit test stage 1');
 
-      test.done();
+      var site_id = result.id;
+
+      console.log('Updating site name...');
+      posterous.updateSite(site_id, {'site[name]': 'unit test stage 2'}, function(err, result) {
+        test.ok(!err, 'An error occurred: ' + err);
+
+        test.ok(result, 'Could not update site name');
+
+        console.log('Fetching site details...');
+        posterous.getSite(site_id, function(err, result) {
+          test.ok(!err, 'An error occurred: ' + err);
+
+          test.ok(result, 'Could not fetch site details');
+
+          test.equals(result.id, site_id);
+          test.equals(result.name, 'unit test stage 2', 'Site name was not updated.');
+
+          console.log('Deleting site...');
+          posterous.deleteSite(site_id, function(err, result) {
+            test.ok(!err, 'An error occurred: ' + err);
+
+            test.ok(result, 'Could not delete site');
+
+            test.done();
+          });
+        });
+      });
     });
   });
 };

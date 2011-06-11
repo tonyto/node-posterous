@@ -68,7 +68,7 @@ The options parameter should be an object corresponding to the options in the do
       'site[is_private]': 'false',
       'site[is_group]': 'false',
       'site[time_zone]': 'UTC',
-      'site[subhead]: subhead
+      'site[subhead]': subhead
     }
 
 **site[hostname]** and **site[name]** are required options.
@@ -76,3 +76,12 @@ The options parameter should be an object corresponding to the options in the do
 See the API docs for descriptions of the options.
 
 The result will be in the same format as the data returned by `getSites`.
+
+### getSite(id, callback)
+`getSite` fetches the details of a site, specified with the *site id*. This method corresponds to the APi endpoint of `sites/:id`.
+
+### updateSite(id, options, callback)
+`updateSite` updates a site's details with the same options as in `createSite`. This method corresponds to the API endpoint `sites/:id`.
+
+### deleteSite(id, callback)
+`deleteSite` deletes the Posterous site specified by the *site id*. This method corresponds to the API endpoint `sites/:id`.
