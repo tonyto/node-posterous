@@ -5,6 +5,7 @@ module.exports['API Token'] = function(test) {
   //To test, add your posterous email/password
   var posterous = new Posterous(config.user, config.pass);
 
+  console.log('Fetching api token...');
   posterous.auth(function(err, result) {
     //Don't expect an error
     test.ok(!err, 'An error occurred: ' + err);
@@ -21,6 +22,7 @@ module.exports['Bad Auth'] = function(test) {
   //Make a bad api token request with no username/password
   var posterous = new Posterous('', '');
 
+  console.log('Fetching api token...');
   posterous.auth(function(err, result) {
     //Expect an error
     test.ok(err);
