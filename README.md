@@ -52,3 +52,27 @@ There is an optional first parameter for specifying the page number of the resul
 `getSubscriptionPosts` retrieves a list of posts from the user's subscribed sites, corresponding to the API endpoint of `users/me/subscriptions/posts`.
 
 There is an optional first parameter for specifying the page number of the results.
+
+### getSites(callback)
+`getSites` retrieves a list of the user's Posterous sites, corresponding to the API endpoint of `sites`.
+
+### createSite(options, callback)
+`createSite` creates a new Posterous site for the user, corresponding to the API endpoint of `sites`.
+
+The options parameter should be an object corresponding to the options in the docs for this API method:
+
+    {
+      'site[hostname]': hostname,
+      'site[virtual_host]': virtualhost,
+      'site[name]': name,
+      'site[is_private]': 'false',
+      'site[is_group]': 'false',
+      'site[time_zone]': 'UTC',
+      'site[subhead]: subhead
+    }
+
+**site[hostname]** and **site[name]** are required options.
+
+See the API docs for descriptions of the options.
+
+The result will be in the same format as the data returned by `getSites`.
