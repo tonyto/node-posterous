@@ -2,8 +2,7 @@ var Posterous = require('../index');
 var config = require('./config');
 
 
-function makeid()
-{
+function makeid() {
   var text = "";
   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
@@ -19,7 +18,7 @@ module.exports['Listing Sites'] = function(test) {
   console.log('Fetching api token...');
   posterous.auth(function(err, result) {
     if (err) {
-      test.ok(!err, 'Could not get api token, check yoru username/password in config/index.js');
+      test.ok(!err, 'Could not get api token, check your username/password in config/index.js');
     }
 
     console.log('Fetching sites...');

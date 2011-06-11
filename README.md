@@ -34,6 +34,8 @@ First read the `/tests/config/index.sample.js` file and create the config file w
 
 Use nodeunit to run the tests in the `/tests` folder.
 
+Running the tests may create new content in your Posterous account such as sites, posts, etc. Wherever possible, the new content is set to private, and is deleted at the end of the tests.
+
 ## API Methods
 ### auth(callback)
 `auth` will fetch the API token and save it to the Posterous object for future method calls. After you call auth, you don't need to do anything yourself with the API token.
