@@ -87,3 +87,23 @@ The result will be in the same format as the data returned by `getSites`.
 
 ### deleteSite(id, callback)
 `deleteSite` deletes the Posterous site specified by the *site id*. This method corresponds to the API endpoint `sites/:id`.
+
+### getPhotos(id, options, callback)
+`getPhotos` gets 20 random photos from a Posterous specified by the *site id*. This method corresponds to the API endpoint `sites/:id/photos`.
+
+The possible keys in the `options` dictionary are `page` which determines which page of photos to return, and `since_id`, which will restrict photos to those attached to posts after the post with the provided ID. (See API docs for more info)
+
+### subscribe(id, callback)
+`subscribe` subscribes the current user to the site specified by the *site id*. This method corresponds to the API endpoint `sites/:id/subscribe`.
+
+### unsubscribe(id, callback)
+`unsubscribe` removes the user's subscription to the site specified by the *site id*. This method corresponds to the API endpoint `sites/:id/unsubscribe`.
+
+### setHeader(id, file, callback)
+`setHeader` sets a new header image for the site. This method corresponds to the API endpoint `sites/:id/header_image`.
+
+### deleteHeader(id, callback)
+`deleteHeader` removes the header image for the site specified by the *site id*. This method corresponds to the API endpoint `sites/:id/header_image`.
+
+### getTags(id, callback)
+`getTags` retrieves the tags associated with a site. This method corresponds to the API endpoint `sites/:id/tags`.
