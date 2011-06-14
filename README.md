@@ -36,7 +36,8 @@ Use nodeunit to run the tests in the `/tests` folder.
 
 Running the tests may create new content in your Posterous account such as sites, posts, etc. Wherever possible, the new content is set to private, and is deleted at the end of the tests.
 
-## API Methods
+# API Methods
+## Users
 ### auth(callback)
 `auth` will fetch the API token and save it to the Posterous object for future method calls. After you call auth, you don't need to do anything yourself with the API token.
 
@@ -45,6 +46,7 @@ The callback for `auth` is slightly different: `result` will contain the API tok
 ### getUser(callback)
 `getUser` retrieves the current user's information, corresponding to the API endpoint of `users/me` in the docs.
 
+## User Subscriptions
 ### getSubscriptions([page number,] callback)
 `getSubscriptions` retrieves a list of the user's current subscriptions, corresponding to the API endpoint of `users/me/subscriptions`.
 
@@ -55,6 +57,7 @@ There is an optional first parameter for specifying the page number of the resul
 
 There is an optional first parameter for specifying the page number of the results.
 
+## Sites
 ### getSites(callback)
 `getSites` retrieves a list of the user's Posterous sites, corresponding to the API endpoint of `sites`.
 
@@ -105,5 +108,6 @@ The possible keys in the `options` dictionary are `page` which determines which 
 ### deleteHeader(id, callback)
 `deleteHeader` removes the header image for the site specified by the *site id*. This method corresponds to the API endpoint `sites/:id/header_image`.
 
+## Tags
 ### getTags(id, callback)
 `getTags` retrieves the tags associated with a site. This method corresponds to the API endpoint `sites/:id/tags`.
