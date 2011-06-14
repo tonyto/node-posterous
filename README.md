@@ -111,3 +111,10 @@ The possible keys in the `options` dictionary are `page` which determines which 
 ## Tags
 ### getTags(id, callback)
 `getTags` retrieves the tags associated with a site. This method corresponds to the API endpoint `sites/:id/tags`.
+
+## Contributors
+### getContributors(id, callback)
+`getContributors` retrieves the contributors of a Posterous. This method corresponds to the API endpoint `sites/:id/contributors`.
+
+### deleteContributors(id, user, callback)
+`deleteContributors` removes a user (specified by ID) from the list of contributors of a site. This method corresponds to the API endpoint `sites/:id/contributors/:user`.
