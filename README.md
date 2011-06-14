@@ -116,5 +116,12 @@ The possible keys in the `options` dictionary are `page` which determines which 
 ### getContributors(id, callback)
 `getContributors` retrieves the contributors of a Posterous. This method corresponds to the API endpoint `sites/:id/contributors`.
 
-### deleteContributors(id, user, callback)
-`deleteContributors` removes a user (specified by ID) from the list of contributors of a site. This method corresponds to the API endpoint `sites/:id/contributors/:user`.
+### removeContributor(id, user, callback)
+`removeContributor` removes a user (specified by ID) from the list of contributors of a site. This method corresponds to the API endpoint `sites/:id/contributors/:user`.
+
+## Subscribers
+### getSubscribers(id, callback)
+`getSubscribers` retrieves the subscribers of a Posterous. This method corresponds to the API endpoint `sites/:id/subscribers`.
+
+### removeSubscriber(id, user, callback)
+`removeSubscriber` removes a user (specified by ID) from the list of subscribers of a site. This method corresponds to the API endpoint `sites/:id/subscribers/:user`.
