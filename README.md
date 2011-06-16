@@ -29,12 +29,6 @@ All API methods have the same callback:
 
 `results` - contains the results of the API call, see the [Posterous API](http://posterous.com/api) for more info.
 
-## Unit tests
-First read the `/tests/config/index.sample.js` file and create the config file with a Posterous username/password.
-
-Use nodeunit to run the tests in the `/tests` folder.
-
-Running the tests may create new content in your Posterous account such as sites, posts, etc. Wherever possible, the new content is set to private, and is deleted at the end of the tests.
 
 # API Methods
 ## Users
