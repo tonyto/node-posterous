@@ -96,12 +96,44 @@ The result will be in the same format as the data returned by `getSites`.
 
 The possible keys in the `options` dictionary are `page` which determines which page of photos to return, and `since_id`, which will restrict photos to those attached to posts after the post with the provided ID. (See API docs for more info)
 
+## Site Profiles
+### getSiteProfile(id, callback)
+`getSiteProfile` corresponds to the API endpoint `sites/:id/profile`.
+
+### createSiteProfile(id, options, callback)
+`createSiteProfile` creates a new profile for a site. This method corresponds to the API endpoint `sites/:id/profile`.
+
+The options parameter must be a dictionary with the following options:
+
+    {
+      'site_profile[group_profile_name]': 'The site profile name',
+      'site_profile[body]': 'Profile information and bio'
+    }
+
+See the Posterous API docs for more info.
+
+### updateSiteProfile(id, options, callback)
+`updateSiteProfile` updates the profile for a site, and corresponds to the API endpoint `sites/:id/profile`.
+
+The options parameter must be the same as in `createSiteProfile`.
+
+### deleteSiteProfile(id, callback)
+`deleteSiteProfile` corresponds to the API endpoint `sites/:id/profile`.
+
+### updateSiteProfileImage(id, file, callback)
+`updateSiteProfileImage` uploads a new profile image. This method corresponds to the API endpoint `sites/:id/profile/image`.
+
+### deleteSiteProfileImage(id, callback)
+`deleteSiteProfileImage` deletes the existing profile image. This method corresponds to the API endpoint `sites/:id/profile/image`.
+
+## Subscribe to site
 ### subscribe(id, callback)
 `subscribe` subscribes the current user to the site specified by the *site id*. This method corresponds to the API endpoint `sites/:id/subscribe`.
 
 ### unsubscribe(id, callback)
 `unsubscribe` removes the user's subscription to the site specified by the *site id*. This method corresponds to the API endpoint `sites/:id/unsubscribe`.
 
+# Site header
 ### setHeader(id, file, callback)
 `setHeader` sets a new header image for the site. This method corresponds to the API endpoint `sites/:id/header_image`.
 
