@@ -133,7 +133,7 @@ The options parameter must be the same as in `createSiteProfile`.
 ### unsubscribe(id, callback)
 `unsubscribe` removes the user's subscription to the site specified by the *site id*. This method corresponds to the API endpoint `sites/:id/unsubscribe`.
 
-# Site header
+## Site header
 ### setHeader(id, file, callback)
 `setHeader` sets a new header image for the site. This method corresponds to the API endpoint `sites/:id/header_image`.
 
@@ -157,3 +157,13 @@ The options parameter must be the same as in `createSiteProfile`.
 
 ### removeSubscriber(id, user, callback)
 `removeSubscriber` removes a user (specified by ID) from the list of subscribers of a site. This method corresponds to the API endpoint `sites/:id/subscribers/:user`.
+
+## External Autopost sites
+### getAutopostSites(id, callback)
+`getAutopostSites` retrieves a list of all external autopost sites for a Posterous. This method corresponds to the API endpoint `sites/:id/external_sites`.
+
+### getAutopostSite(id, autopost\_id, callback)
+`getAutopostSite` retrieves a single external autopost site by its ID. This method corresponds to the API endpoint `sites/:id/external_sites/:autopost_id`.
+
+### deleteAutopostSite(id, autopost\_id, callback)
+`deleteAutopostSite` removes a single external autopost site by ID. This method corresponds ot the API endpoint `sites/:id/external_sites/:autopost_id`.
