@@ -12,7 +12,7 @@ module.exports['Current User'] = function(test) {
     }
 
     console.log('Fetching user details...');
-    posterous.getUser(function(err, result) {
+    posterous.get('User', null, function(err, result) {
       test.ok(!err, 'An error occurred: ' + err);
 
       test.ok(result, 'Did not retrieve user information');

@@ -11,13 +11,13 @@ module.exports['Subscribed Sites'] = function(test) {
     }
 
     console.log('Fetching page 1 of subscriptions...');
-    posterous.getSubscriptions(function(err, result) {
+    posterous.get('Subscriptions', null, function(err, result) {
       test.ok(!err, 'An error occurred: ' + err);
 
       test.ok(result, 'Could not retrieve the user\'s subscriptions');
 
       console.log('Fetching page 2 of subscriptions...');
-      posterous.getSubscriptions(2, function(err, result) {
+      posterous.get('Subscriptions', {page: 2}, function(err, result) {
         test.ok(!err, 'An error occurred: ' + err);
 
         test.ok(result, 'Coudl not retrieve page 2 of subscriptions');
@@ -38,13 +38,13 @@ module.exports['Subscription Posts'] = function(test) {
     }
 
     console.log('Fetching page 1 of subscription posts...');
-    posterous.getSubscriptionPosts(function(err, result) {
+    posterous.get('SubscriptionPosts', null, function(err, result) {
       test.ok(!err, 'An error occurred: ' + err);
 
       test.ok(result, 'Could not retrieve page 1 of subscription posts');
 
       console.log('Fetching page 2 of subscription posts...');
-      posterous.getSubscriptionPosts(2, function(err, result) {
+      posterous.get('SubscriptionPosts', {page: 2}, function(err, result) {
         test.ok(!err, 'An error occurred: ' + err);
 
         test.ok(result, 'Could not retrieve page 2 of posts');

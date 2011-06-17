@@ -22,7 +22,7 @@ module.exports['Listing Sites'] = function(test) {
     }
 
     console.log('Fetching sites...');
-    posterous.getSites(function(err, result) {
+    posterous.get('Sites', null, function(err, result) {
       test.ok(!err, 'An error occurred: ' + err);
 
       test.ok(result, 'Could not retrieve list of sites.');
@@ -61,7 +61,7 @@ module.exports['Create, update, retrieve and delete site'] = function(test) {
       'site[is_private]': 'true'
     };
 
-    posterous.createSite(options, function(err, result) {
+    posterous.post('Sites', options, function(err, result) {
       test.ok(!err, 'An error occurred: ' + err);
 
       test.ok(result, 'Could not create a new site');
@@ -71,13 +71,13 @@ module.exports['Create, update, retrieve and delete site'] = function(test) {
       var site_id = result.id;
 
       console.log('Updating site name...');
-      posterous.updateSite(site_id, {'site[name]': 'unit test stage 2'}, function(err, result) {
+      posterous.put('Site', site_id, {'site[name]': 'unit test stage 2'}, function(err, result) {
         test.ok(!err, 'An error occurred: ' + err);
 
         test.ok(result, 'Could not update site name');
 
         console.log('Fetching site details...');
-        posterous.getSite(site_id, function(err, result) {
+        posterous.get('Site', site_id, null, function(err, result) {
           test.ok(!err, 'An error occurred: ' + err);
 
           test.ok(result, 'Could not fetch site details');
@@ -86,7 +86,7 @@ module.exports['Create, update, retrieve and delete site'] = function(test) {
           test.equals(result.name, 'unit test stage 2', 'Site name was not updated.');
 
           console.log('Deleting site...');
-          posterous.deleteSite(site_id, function(err, result) {
+          posterous.del('Site', site_id, null, function(err, result) {
             test.ok(!err, 'An error occurred: ' + err);
 
             test.ok(result, 'Could not delete site');
