@@ -14,6 +14,8 @@ Then call the `auth` method to fetch the user's API token.
     var Posterous = require('posterous');
 
     var posterous = new Posterous('user', 'pass');
+
+    //First call auth to get the API token
     posterous.auth(function (err, result) {
       if (err) {
         console.error('Could not fetch API token!');
@@ -30,7 +32,7 @@ This makes GET request to the API endpoint specified by `api name`.
 
 Some API endpoints require arguments such as a site ID, or post ID, and these should be passed as the parameters after the api name.
 
-The `options` parameter is used for POST and PUT requests, where you will want to include body data. For more info on which options are available to each type of request, see the [Posterous API docs](http://posterous.com/api). If there are no options, you must pass `null` to the function.
+The `options` parameter is a dictionary used for POST and PUT requests, where you will want to include body data. For more info on which options are available to each type of request, see the [Posterous API docs](http://posterous.com/api). If there are no options, you must pass `null` to the function.
 
 The callback function will be used to return error messages or request results.
 
@@ -63,12 +65,22 @@ All API methods have the same callback:
 ### User (GET)
 Get the current user's information.
 
+    posterous.get('User', null, function (err, result) {
+      //Use result here
+      console.log(result.nickname);
+    });
+
 ### Users (POST)
 Create a new user (only for platform users of Posterous).
 
 ## Subscriptions
 ### Subscriptions (GET)
 The user's current subscriptions.
+
+    //Fetch the second page of subscriptions
+    posterous.get('Subscriptions', {page: 2}, function(err, result) {
+      //Use result here
+    });
 
 ### SubscriptionPosts (GET)
 The posts from the user's subscribed sites.
@@ -77,10 +89,24 @@ The posts from the user's subscribed sites.
 ### Sites (GET, POST)
 List the user's Posterous sites, or create new sites.
 
+    var options = {
+      'site[hostname]': hostname,
+      'site[name]': 'My Posterous Site',
+      'site[is_private]': 'false'
+    }
+    
+    posterous.post('Sites', options, function(err, result) {
+      //Check result to make sure the site was created
+    });
+
 ### Site (GET, PUT, DELETE)
 __Args:__ site ID
 
 Get a single Posterous site, update it, or delete it.
+
+    posterous.del('Site', site_id, null, function(err, result) {
+      //Use result here
+    });
 
 ### Photos (GET)
 __Args:__ site ID
