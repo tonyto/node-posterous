@@ -22,6 +22,33 @@ Then call the `auth` method to fetch the user's API token.
       //API token fetched, you can now use all the API methods!
     });
 
+## Methods
+`get(api name, [args,] options, callback)`
+
+This makes GET request to the API endpoint specified by `api name`.
+
+Some API endpoints require arguments such as a site ID, or post ID, and these should be passed as the parameters after the api name.
+
+The `options` parameter is used for POST and PUT requests, where you will want to include body data. For more info on which options are available to each type of request, see the [Posterous API docs](http://posterous.com/api).
+
+The callback function will be used to return error messages or request results.
+
+The same applies to the following functions for different request methods:
+
+`post(api name, [args,] options, callback)`
+
+`put(api name, [args,] options, callback)`
+
+`del(api name, [args,] options, callback)`
+
+### auth(callback)
+`auth` will fetch the API token and save it to the Posterous object for future method calls. After you call auth, you don't need to do anything yourself with the API token.
+
+The callback for `auth` is slightly different: `result` will contain the API token directly as a string.
+
+__auth should be called before any other API requests, except for public APIs.__
+
+
 ## Callbacks
 All API methods have the same callback:
 
@@ -30,134 +57,121 @@ All API methods have the same callback:
 `results` - contains the results of the API call, see the [Posterous API](http://posterous.com/api) for more info.
 
 
-# API Methods
-## Users
-### auth(callback)
-`auth` will fetch the API token and save it to the Posterous object for future method calls. After you call auth, you don't need to do anything yourself with the API token.
+# APIs
+## User (GET)
+Get the current user's information.
 
-The callback for `auth` is slightly different: `result` will contain the API token directly as a string.
+## Users (POST)
+Create a new user (only for platform users of Posterous).
 
-### getUser(callback)
-`getUser` retrieves the current user's information, corresponding to the API endpoint of `users/me` in the docs.
+## Subscriptions (GET)
+The user's current subscriptions.
 
-## User Subscriptions
-### getSubscriptions([page number,] callback)
-`getSubscriptions` retrieves a list of the user's current subscriptions, corresponding to the API endpoint of `users/me/subscriptions`.
+## SubscriptionPosts (GET)
+The posts from the user's subscribed sites.
 
-There is an optional first parameter for specifying the page number of the results.
+## Sites (GET, POST)
+List the user's Posterous sites, or create new sites.
 
-### getSubscriptionPosts([page number,] callback)
-`getSubscriptionPosts` retrieves a list of posts from the user's subscribed sites, corresponding to the API endpoint of `users/me/subscriptions/posts`.
+## Site (GET, PUT, DELETE)
+__Args:__ site ID
+Get a single Posterous site, update it, or delete it.
 
-There is an optional first parameter for specifying the page number of the results.
+## Photos (GET)
+__Args:__ site ID
+Get 20 random photos from the user's sites.
 
-## Sites
-### getSites(callback)
-`getSites` retrieves a list of the user's Posterous sites, corresponding to the API endpoint of `sites`.
+## Subscribe (GET)
+__Args:__ site ID
+Subscribe the current user to a site.
 
-### createSite(options, callback)
-`createSite` creates a new Posterous site for the user, corresponding to the API endpoint of `sites`.
+## Unsubscribe (GET)
+__Args:__ site ID
+Unsubscribe the current user from a site.
 
-The options parameter should be an object corresponding to the options in the docs for this API method:
+## HeaderImage (POST, DELETE)
+__Args:__ site ID
+Upload a new header image, or delete it.
 
-    {
-      'site[hostname]': hostname,
-      'site[virtual_host]': virtualhost,
-      'site[name]': name,
-      'site[is_private]': 'false',
-      'site[is_group]': 'false',
-      'site[time_zone]': 'UTC',
-      'site[subhead]': subhead
-    }
+## SiteProfile (GET, POST, PUT, DELETE)
+__Args:__ site ID
+Get, create, update, delete a site's profile.
 
-**site[hostname]** and **site[name]** are required options.
+## SiteProfileImage (PUT, DELETE)
+__Args:__ site ID
+Upload or delete a site's profile image.
 
-See the API docs for descriptions of the options.
+## Tags (GET)
+__Args:__ site ID
+Get the list of tags for a site.
 
-The result will be in the same format as the data returned by `getSites`.
+## Contributors (GET, POST)
+__Args:__ site ID
+Get the list of contributors, or add a new contributor.
 
-### getSite(id, callback)
-`getSite` fetches the details of a site, specified with the *site id*. This method corresponds to the APi endpoint of `sites/:id`.
+## Contributor (DELETE)
+__Args:__ site ID, contributor ID
+Delete a contributor from a site.
 
-### updateSite(id, options, callback)
-`updateSite` updates a site's details with the same options as in `createSite`. This method corresponds to the API endpoint `sites/:id`.
+## Subscribers (GET, POST)
+__Args:__ site ID
+Get a list of subscribers to a site, or add a new subscriber (Platform users only).
 
-### deleteSite(id, callback)
-`deleteSite` deletes the Posterous site specified by the *site id*. This method corresponds to the API endpoint `sites/:id`.
+## Subscriber (DELETE)
+__Args:__ site ID, subscriber ID
+Remove a subscriber from a site.
 
-### getPhotos(id, options, callback)
-`getPhotos` gets 20 random photos from a Posterous specified by the *site id*. This method corresponds to the API endpoint `sites/:id/photos`.
+## ExternalSites (GET)
+__Args:__ site ID
+Get a list of external autopost sites.
 
-The possible keys in the `options` dictionary are `page` which determines which page of photos to return, and `since_id`, which will restrict photos to those attached to posts after the post with the provided ID. (See API docs for more info)
+## ExternalSite (GET, DELETE)
+__Args:__ site ID, external site ID
+Get or delete a single external autopost site.
 
-## Site Profiles
-### getSiteProfile(id, callback)
-`getSiteProfile` corresponds to the API endpoint `sites/:id/profile`.
+## Theme (GET, POST)
+__Args:__ site ID
+Get the theme for a site, or create a new theme.
 
-### createSiteProfile(id, options, callback)
-`createSiteProfile` creates a new profile for a site. This method corresponds to the API endpoint `sites/:id/profile`.
+## AllPosts (GET)
+Get a list of public posts.
 
-The options parameter must be a dictionary with the following options:
+## Posts (GET, POST)
+__Args:__ site ID
+Get a list of posts belonging to a site, or create a new post.
 
-    {
-      'site_profile[group_profile_name]': 'The site profile name',
-      'site_profile[body]': 'Profile information and bio'
-    }
+## PublicPosts (GET)
+__Args:__ site ID
+Get a list of a site's public posts.
 
-See the Posterous API docs for more info.
+## Post (GET, PUT, DELETE)
+__Args:__ site ID, post ID
+Get a single post, update it or delete it.
 
-### updateSiteProfile(id, options, callback)
-`updateSiteProfile` updates the profile for a site, and corresponds to the API endpoint `sites/:id/profile`.
+## PostPhotos (GET)
+__Args:__ site ID, post ID
+Get photos from a post.
 
-The options parameter must be the same as in `createSiteProfile`.
+## PostVideos (GET)
+__Args:__ site ID, post ID
+Get videos from a post.
 
-### deleteSiteProfile(id, callback)
-`deleteSiteProfile` corresponds to the API endpoint `sites/:id/profile`.
+## PostAudioFiles (GET)
+__Args:__ site ID, post ID
+Get audo files from a post.
 
-### updateSiteProfileImage(id, file, callback)
-`updateSiteProfileImage` uploads a new profile image. This method corresponds to the API endpoint `sites/:id/profile/image`.
+## Comments (GET, POST)
+__Args:__ site ID, post ID
+Get a list of comments from a post, or create a new comment.
 
-### deleteSiteProfileImage(id, callback)
-`deleteSiteProfileImage` deletes the existing profile image. This method corresponds to the API endpoint `sites/:id/profile/image`.
+## Comment (GET, PUT, DELETE)
+__Args:__ site ID, post ID, comment ID
+Get a single comment from a post, update it, or delete it.
 
-## Subscribe to site
-### subscribe(id, callback)
-`subscribe` subscribes the current user to the site specified by the *site id*. This method corresponds to the API endpoint `sites/:id/subscribe`.
+## Likes (GET, POST)
+__Args:__ site ID, post ID
+Get a list of likes for a post, or add a new like.
 
-### unsubscribe(id, callback)
-`unsubscribe` removes the user's subscription to the site specified by the *site id*. This method corresponds to the API endpoint `sites/:id/unsubscribe`.
-
-## Site header
-### setHeader(id, file, callback)
-`setHeader` sets a new header image for the site. This method corresponds to the API endpoint `sites/:id/header_image`.
-
-### deleteHeader(id, callback)
-`deleteHeader` removes the header image for the site specified by the *site id*. This method corresponds to the API endpoint `sites/:id/header_image`.
-
-## Tags
-### getTags(id, callback)
-`getTags` retrieves the tags associated with a site. This method corresponds to the API endpoint `sites/:id/tags`.
-
-## Contributors
-### getContributors(id, callback)
-`getContributors` retrieves the contributors of a Posterous. This method corresponds to the API endpoint `sites/:id/contributors`.
-
-### removeContributor(id, user, callback)
-`removeContributor` removes a user (specified by ID) from the list of contributors of a site. This method corresponds to the API endpoint `sites/:id/contributors/:user`.
-
-## Subscribers
-### getSubscribers(id, callback)
-`getSubscribers` retrieves the subscribers of a Posterous. This method corresponds to the API endpoint `sites/:id/subscribers`.
-
-### removeSubscriber(id, user, callback)
-`removeSubscriber` removes a user (specified by ID) from the list of subscribers of a site. This method corresponds to the API endpoint `sites/:id/subscribers/:user`.
-
-## External Autopost sites
-### getAutopostSites(id, callback)
-`getAutopostSites` retrieves a list of all external autopost sites for a Posterous. This method corresponds to the API endpoint `sites/:id/external_sites`.
-
-### getAutopostSite(id, autopost\_id, callback)
-`getAutopostSite` retrieves a single external autopost site by its ID. This method corresponds to the API endpoint `sites/:id/external_sites/:autopost_id`.
-
-### deleteAutopostSite(id, autopost\_id, callback)
-`deleteAutopostSite` removes a single external autopost site by ID. This method corresponds ot the API endpoint `sites/:id/external_sites/:autopost_id`.
+## Like (GET, DELETE)
+__Args:__ site ID, post ID, like ID
+Get a single like for a post, or delete it.
