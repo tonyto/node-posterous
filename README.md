@@ -20,6 +20,7 @@ Then call the `auth` method to fetch the user's API token.
       }
 
       //API token fetched, you can now use all the API methods!
+      //See the tests folder for examples of the library in action!
     });
 
 ## Methods
@@ -187,3 +188,38 @@ Get a list of likes for a post, or add a new like.
 ### Like (GET, DELETE)
 __Args:__ site ID, post ID, like ID
 Get a single like for a post, or delete it.
+
+## Pages
+### Pages (GET, POST)
+__Args:__ site ID
+Get a list of a site's pages, or create a new page.
+
+### Page (GET, PUT, DELETE)
+__Args:__ site ID, page ID
+Get a single page, update it, or delete it.
+
+## Link Categories
+### Categories (GET, POST)
+__Args:__ site ID
+Get a list of categories, or create a new category.
+
+### Category (GET, PUT, DELETE)
+__Args:__ site ID, category ID
+Get a single category, update it, or delete it.
+
+### MoveCategory (PUT)
+__Args:__ site ID, category ID
+Move a category to a new position.
+
+## Links
+### Links (GET, POST)
+__Args:__ site ID, category ID
+Get a list of links, or create a link in the category.
+
+### Link (GET, PUT, DELETE)
+__Args:__ site ID, category ID, link ID
+Get a single link, update it, or delete it.
+
+### MoveLink (PUT)
+__Args:__ site ID, category ID, link ID
+Move a link to a new position.
