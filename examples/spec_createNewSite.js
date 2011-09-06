@@ -4,10 +4,10 @@ var config = require('./config');
 var posterous = new Posterous(config.user, config.pass, config.api_token);
 
 console.log('Fetching user details...');
-posterous.get('User', null, function(err, result) {
-    if(err){
-        console.error(err, 'An error occurred: ' + err);
-    }
+posterous.post('Posts', 'tonyto85', {post: {title: 'foo bar title', body: 'foo bar body'}} function(err, result) {
+  if(err){
+      console.error(err, 'something did not work');
+  }
 
   console.log(result);
 });
