@@ -5,9 +5,10 @@ var config = require('./config');
 
     console.log('Fetching user details...');
     posterous.get('User', null, function(err, result) {
-      console.error(!err, 'An error occurred: ' + err);
-
-      console.log(result, 'Did not retrieve user information');
+        if(err){
+            console.error(err, 'An error occurred: ' + err);
+        }
+//      console.log(result, 'Did not retrieve user information');
 
       console.log(result);
     });

@@ -4,26 +4,18 @@
   "description": "Package for the Posterous API",
   "keywords": [
     "posterous",
-    "api",
-  ],
-  "contributors": [
-    {
-      "name": "Chun-hao Hu",
-      "email": "hu.chunhao@gmail.com",
-      "web": "http://blog.huchunhao.com"
-    }
+    "api"
   ],
   "bugs": {
     "web": "https://github.com/andzdroid/node-posterous/issues"
   },
-  "repositories": [
-    {
+  "repositories": {
       "type": "git",
       "url": "git@github.com:andzdroid/node-posterous.git"
-    }
-  ],
-  "dependencies": {
-  },
-  "main": "index",
+    },
+  "dependencies":	{
+			"restler": "0.2.1"
+		},
+  "main": "index.js",
   "engines": ["node"]
 }
