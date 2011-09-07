@@ -2,4 +2,4 @@
 *.swp
 tests/config/index.js
 *.log
-
+node_modules/
