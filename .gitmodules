@@ -1,3 +1,0 @@
-[submodule "restler"]
-	path = restler
-	url = git://github.com/danwrong/restler.git
